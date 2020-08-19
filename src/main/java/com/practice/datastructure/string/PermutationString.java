@@ -1,6 +1,7 @@
 package com.practice.datastructure.string;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class PermutationString {
 
@@ -60,4 +61,29 @@ public class PermutationString {
     return true;
   }
 
+
+  public static int minSum(List<Integer> num, int k) {
+
+
+    double max , two  = 2.0;
+    for(int i = 0; i<k ; i++){
+      int maxIndex = maxIndex(num);
+      max = (double)num.remove(maxIndex);
+
+      num.add(maxIndex, (int) Math.ceil(max/two));
+    }
+    return num.stream().reduce(0, Integer::sum);
+  }
+
+  public static int maxIndex(List<Integer> num){
+    Integer max = num.stream().max(Integer:: compareTo).get();
+    return num.indexOf(max);
+  }
+/*
+  public static void main(String[] args) {
+    List<Integer > num = new ArrayList<>();
+    num.add(2);
+    num.add(3);
+    System.out.println(minSum(num,1 ));
+  }*/
 }
